@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AC Cultivar Co.</title>
+
+<style>
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top, #08110a, #020302 45%, #050806);
+  color: #e8f9e6;
+}
+
+/* HEADER */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  text-align: center;
+  padding: 24px 20px;
+  border-bottom: 1px solid rgba(76,175,80,0.18);
+  backdrop-filter: blur(18px);
+  background: rgba(0,0,0,0.12);
+}
+
+header h1 {
+  font-size: 32px;
+  letter-spacing: 4px;
+  color: rgba(123,241,126,0.95);
+  margin: 0;
+  text-shadow: 0 0 12px rgba(123,241,126,0.18);
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 40px 20px 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.hero-image {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: 18px;
+  margin: 0 auto 24px;
+  box-shadow: 0 20px 55px rgba(0,0,0,0.5);
+  opacity: 0.96;
+}
+
+.hero h2 {
+  font-size: clamp(28px, 6vw, 48px);
+  margin-bottom: 12px;
+  color: #ffffff;
+}
+
+.hero h2 span {
+  color: #33b53f;
+}
+
+.hero p {
+  opacity: 0.8;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* SECTION */
+.section {
+  padding: 50px 20px;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* GRID */
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 26px;
+  align-items: start;
+}
+
+/* PREMIUM CARD */
+.card {
+  background: rgba(8, 13, 10, 0.82);
+  border: 1px solid rgba(76,175,80,0.18);
+  backdrop-filter: blur(14px);
+  border-radius: 18px;
+  padding: 22px;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(120, 255, 130, 0.55);
+  box-shadow: 0 22px 48px rgba(0,0,0,0.45);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover img {
+  filter: grayscale(0%);
+  transform: scale(1.02);
+}
+
+.card h3 {
+  margin: 10px 0;
+}
+
+.card p {
+  opacity: 0.7;
+}
+
+.card .label {
+  color: #8af38d;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.79rem;
+  margin-bottom: 8px;
+}
+
+/* BUTTON */
+button {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid rgba(75, 210, 114, 0.35);
+  background: rgba(16, 32, 14, 0.9);
+  color: #b9f8bb;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+button:hover {
+  opacity: 1;
+  background: linear-gradient(135deg, rgba(75,210,114,0.2), rgba(56,150,90,0.3));
+  box-shadow: 0 0 18px rgba(75,210,114,0.3);
+  transform: translateY(-1px);
+}
+
+/* CONTACT */
+.contact {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: #d1f7cb;
+}
+
+.contact h3 {
+  margin: 0;
+  color: #84ff88;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  font-size: 1.15rem;
+}
+
+.contact p {
+  margin: 0;
+  opacity: 0.75;
+}
+
+/* AGE POPUP */
+#age-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.age-box {
+  background: #111;
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid #4caf50;
+  text-align: center;
+  max-width: 300px;
+}
+
+/* STICKY ORDER BAR */
+.sticky-bar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #0b0f0c;
+  border-top: 1px solid #4caf50;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  z-index: 999;
+}
+
+.sticky-bar a {
+  width: 90%;
+}
+
+.sticky-bar button {
+  width: 100%;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  opacity: 0.6;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .hero {
+    padding: 32px 16px 24px;
+  }
+
+  .hero-image {
+    max-height: 260px;
+    border-radius: 16px;
+  }
+
+  .section {
+    padding: 36px 16px;
+  }
+
+  .products {
+    gap: 20px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .card img {
+    height: 220px;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 15px;
+  }
+
+  header {
+    padding: 18px 16px;
+  }
+
+  header h1 {
+    font-size: 22px;
+  }
+
+  .hero {
+    padding: 28px 16px 22px;
+  }
+
+  .hero-image {
+    max-height: 220px;
+  }
+
+  .hero h2 {
+    font-size: clamp(24px, 8vw, 32px);
+  }
+
+  .hero p {
+    max-width: 100%;
+    padding: 0 8px;
+  }
+
+  .section {
+    padding: 30px 16px;
+  }
+
+  .products {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .card img {
+    height: auto;
+  }
+
+  .card h3 {
+    font-size: 1.1rem;
+  }
+
+  button {
+    min-height: 50px;
+    border-radius: 12px;
+  }
+
+  footer {
+    padding: 24px 16px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- AGE GATE -->
+<div id="age-popup">
+  <div class="age-box">
+    <h2>21+ Only</h2>
+    <p>You must be of legal age to enter.</p>
+    <button onclick="enterSite()">Enter</button>
+    <button onclick="exitSite()">Exit</button>
+  </div>
+</div>
+
+<header>
+  <h1>AC CULTIVAR CO.</h1>
+</header>
+
+<div class="hero">
+  <img src="hero.jpg" class="hero-image" alt="AC Cultivar Co. hero image">
+    <h2>Premium. Pure. <span>Powerful.</span></h2>
+
+<div class="section">
+  <h2>Our Products</h2>
+
+  <div class="products">
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1603909223429-69bb7101f420?w=400">
+      <h3>Exotic Flower</h3>
+      <p>Top-shelf indoor strains.</p>
+      <a href="https://www.instagram.com/accultivarco" target="_blank" rel="noreferrer noopener">
+        <button>Order Now</button>
+      </a>
+    </div>
+
+    <div class="card">
+      <img src="https://d3mpfc5s3j13er.cloudfront.net/wp-content/uploads/2024/09/20082531/Blog-2.webp" alt="Pre-rolled joints">
+      <h3>Pre-Rolls</h3>
+      <p>Convenient & smooth.</p>
+      <a href="https://www.instagram.com/accultivarco" target="_blank" rel="noreferrer noopener">
+        <button>Order Now</button>
+      </a>
+    </div>
+
+    <div class="card">
+      <img src="https://imgs.search.brave.com/E3BnqSExpw_zcCqaJMvaeZ5AIlSCz7gAt-KsbhREffI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9ncmVl/bnNhdGl2YS5jb20v/d3AtY29udGVudC91/cGxvYWRzLzIwMjQv/MDMvY2xvc2UtdXAt/aW1hZ2Utb2YtY2Fu/bmFiaXMtY29uY2Vu/dHJhdGVzLmpwZw" alt="Cannabis concentrate extract">
+      <h3>Concentrates</h3>
+      <p>High potency extracts.</p>
+      <a href="https://www.instagram.com/accultivarco" target="_blank" rel="noreferrer noopener">
+        <button>Order Now</button>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 AC Cultivar Co.</p>
+  <div class="contact">
+    <h3>Contact</h3>
+    <p>Email: <a href="mailto:info@accultivarco.com">info@accultivarco.com</a></p>
+    <p>Instagram: <a href="https://www.instagram.com/accultivarco" target="_blank">@accultivarco</a></p>
+  </div>
+</footer>
+
+<script>
+function enterSite() {
+  localStorage.setItem("ageVerified", "true");
+  document.getElementById("age-popup").style.display = "none";
+}
+
+function exitSite() {
+  window.location.href = "https://www.google.com";
+}
+
+window.onload = function() {
+  if (localStorage.getItem("ageVerified") === "true") {
+    document.getElementById("age-popup").style.display = "none";
+  }
+};
+</script>
+
+</body>
+</html>
